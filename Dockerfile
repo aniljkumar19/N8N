@@ -1,17 +1,11 @@
-# Example: Install a community node
+# Use the official n8n Docker image as the base
 FROM n8nio/n8n
+
+# Set the working directory inside the container
 WORKDIR /home/node/
+
+# Expose the default n8n port
 EXPOSE 5678
 
-# Set environment variable to reinstall missing packages
-ENV N8N_REINSTALL_MISSING_PACKAGES=true
-# Set custom extensions directory
-ENV N8N_CUSTOM_EXTENSIONS=/home/node/custom-nodes/
-
-# Create a directory for custom nodes
-RUN mkdir -p /home/node/custom-nodes/
-
-# Install a specific community node
-RUN npm install n8n-nodes-text-manipulation --prefix /home/node/custom-nodes/
-
+# Command to run n8n when the container starts
 CMD ["n8n"]
